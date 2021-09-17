@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, url_for, redirect
+from flask import Flask, render_template, request, url_for, redirect , flash
 from flask_mysqldb import MySQL
 from dotenv import dotenv_values, set_key
 from dataBase import dataBase
@@ -60,13 +60,19 @@ def about():
     return render_template("about.html", data=data, navActive=navActive)
 
 
-def sendFeedbackMail( data,name, email):
+def sendFeedbackMail( data,name, email,content):
 
     msg = Message('Selamlar..', sender='ismailtosunnet@gmail.com',
-                  recipients=[email, "itosun_99@hotmail.com"])
+                  recipients=[email, "itosun_99@hotmail.com"])        #feedback mail for user
     data["mail_subtitle"] = data["mail_appeal"] + " " + name + " " + data["mail_subtitle"]
     msg.html = render_template("mail.html", data=data)
     mail.send(msg)
+
+    msgtome = Message(name, sender='ismailtosunnet@gmail.com',      #feedback mail for me
+                  recipients=["itosun_99@hotmail.com"])
+
+    msgtome.html = f"<h1>{name}</h1> <br> <h1>{email}</h1> <br> <p>{content}</p>"
+    mail.send(msgtome)
 
 
 @app.route("/contact", methods=["GET", "POST"])
@@ -88,7 +94,8 @@ def contact():
 
         print(name, email, content)
         webpageDB.insertto_contact_form(name,email,content)
-        sendFeedbackMail(data, name, email)
+        sendFeedbackMail(data, name, email,content)
+        flash("OLUR OLUR YERİZ","success")
         return redirect(url_for("index"))
 
     print(form.name.label)
