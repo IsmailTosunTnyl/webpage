@@ -57,6 +57,7 @@ def about():
     navActive = navbarActive()
     navActive["about"] = "active"
 
+
     return render_template("about.html", data=data, navActive=navActive)
 
 
@@ -85,20 +86,18 @@ def contact():
     form = contactForm(request.form)
 
     if request.method == "POST" and form.validate():
+        try:
+            name = form.name.data
+            email = form.email.data
+            content = form.content.data
+            webpageDB.insertto_contact_form(name,email,content)
+            sendFeedbackMail(data, name, email,content)             #flash message
+            flash("Mesajınız alındı","success")
+            return redirect(url_for("index"))
+        except:
+            flash("Hata daha sonra tekrar deneyin", "danger")
+            return redirect(url_for("index"))
 
-        name = form.name.data
-        email = form.email.data
-        content = form.content.data
-        print(name, email, content)
-        print("FORMMM", form.validate())
-
-        print(name, email, content)
-        webpageDB.insertto_contact_form(name,email,content)
-        sendFeedbackMail(data, name, email,content)
-        flash("OLUR OLUR YERİZ","success")
-        return redirect(url_for("index"))
-
-    print(form.name.label)
     return render_template("contact.html", data=data, navActive=navActive, form=form)
 
 
