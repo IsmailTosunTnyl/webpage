@@ -3,9 +3,7 @@ from flask_mysqldb import MySQL
 from dotenv import dotenv_values, set_key
 from dataBase import dataBase
 from forms import contactForm
-from wtforms import Form, StringField, validators, TextAreaField
 
-import email_validator
 
 from flask_mail import Mail, Message
 
