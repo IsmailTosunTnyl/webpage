@@ -1,33 +1,47 @@
-import mysql.connector
-from mysql.connector import Error
+
 from dotenv import dotenv_values
+import boto3
+from datetime import datetime
+import pytz
+
 env = dotenv_values(".env")
+
 
 class dataBase():
 
-    def __init__(self,database):
-        self.mydb = mysql.connector.connect(
-          host=env["MYSQL_HOST"],
-          user=env["MYSQL_USER"],
-          password=env["MYSQL_PASSWORD"],
-          database=database
+    def __init__(self):
 
 
+        self.client = boto3.resource('dynamodb', aws_access_key_id=env["aws_access_key_id"],
+                                     aws_secret_access_key=env["aws_secret_access_key"],
+                                     region_name=env["region_name"])
 
+    def fetch_languages(self):
+        table = self.client.Table("DynoDb1")
+        response = table.get_item(
+            Key={
+                'tablename': 'WebpageDb',
+
+            }
+        )
+        item = response['Item']
+        return item["languages"]
+
+    def insertto_contact_form(self, name, email, content):
+        table = self.client.Table("DynoDb1")
+        nowDate = datetime.now(pytz.timezone('Europe/Istanbul')).strftime("%d/%m/%Y %H:%M:%S")
+        form_newdata = {"name": name, "date": nowDate, "email": email, "content": content}
+        result = table.update_item(
+            Key={
+                'tablename': 'WebPageDb_contactform',
+
+            },
+            UpdateExpression="SET form_data = list_append(form_data, :i)",
+            ExpressionAttributeValues={
+                ':i': [form_newdata],
+            },
+            ReturnValues="UPDATED_NEW"
         )
 
 
-    def fetch_languages(self):
-        self.cursor = self.mydb.cursor(dictionary=True)
-        self.cursor.execute("SELECT * from languages")
-        data = self.cursor.fetchall()
 
-        return data[0]
-
-    def insertto_contact_form(self,name,email,content):
-        self.cursor = self.mydb.cursor(dictionary=True)
-        self.cursor.execute("INSERT into contact_form(name,email,content) VALUES(%s,%s,%s)", (name, email, content))
-        self.mydb.commit()
-
-
-print(dataBase(env["MYSQL_DB"]).fetch_languages())

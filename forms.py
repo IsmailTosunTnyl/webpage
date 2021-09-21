@@ -5,8 +5,8 @@ from wtforms import Form, BooleanField, StringField, PasswordField, validators,T
 
 import email_validator
 
-env = dotenv_values(".env")
-webpageDB = dataBase(env["MYSQL_DB"])
+
+webpageDB = dataBase()
 
 class contactForm(Form):
     data = webpageDB.fetch_languages()

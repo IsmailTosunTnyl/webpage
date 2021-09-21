@@ -23,7 +23,7 @@ mail = Mail(app)
 
 mysql = MySQL(app)
 
-webpageDB = dataBase(env["MYSQL_DB"])
+webpageDB = dataBase()
 
 
 
