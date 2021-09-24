@@ -1,9 +1,9 @@
-from flask import Flask, render_template, request, url_for, redirect , flash
+from flask import Flask, render_template, request, url_for, redirect, flash,current_app
 from flask_mysqldb import MySQL
 from dotenv import dotenv_values, set_key
 from dataBase import dataBase
 from forms import contactForm
-
+import threading
 
 from flask_mail import Mail, Message
 
@@ -26,20 +26,15 @@ mysql = MySQL(app)
 webpageDB = dataBase()
 
 
-
-
-
-
 def navbarActive():
     navActive = {"home": "", "about": "", "contact": ""}
     return navActive
 
 
 @app.route('/')
-def index():  # put application's code here
+def index():
 
     print(request.accept_languages.best_match(["de", "tr"]))
-
 
     data = webpageDB.fetch_languages()
 
@@ -55,23 +50,24 @@ def about():
     navActive = navbarActive()
     navActive["about"] = "active"
 
-
     return render_template("about.html", data=data, navActive=navActive)
 
 
-def sendFeedbackMail( data,name, email,content):
+def sendFeedbackMail(data, name, email, content):
+
 
     msg = Message('Selamlar..', sender='ismailtosunnet@gmail.com',
-                  recipients=[email, "itosun_99@hotmail.com"])        #feedback mail for user
+                  recipients=[email, "itosun_99@hotmail.com"])  # feedback mail for user
     data["mail_subtitle"] = data["mail_appeal"] + " " + name + " " + data["mail_subtitle"]
-    msg.html = render_template("mail.html", data=data)
-    mail.send(msg)
+    with app.app_context():
+        msg.html = render_template("mail.html", data=data)
+        mail.send(msg)
 
-    msgtome = Message(name, sender='ismailtosunnet@gmail.com',      #feedback mail for me
-                  recipients=["itosun_99@hotmail.com"])
+        msgtome = Message(name, sender='ismailtosunnet@gmail.com',  # feedback mail for me
+                      recipients=["itosun_99@hotmail.com"])
 
-    msgtome.html = f"<h1>{name}</h1> <br> <h1>{email}</h1> <br> <p>{content}</p>"
-    mail.send(msgtome)
+        msgtome.html = f"<h1>{name}</h1> <br> <h1>{email}</h1> <br> <p>{content}</p>"
+        mail.send(msgtome)
 
 
 @app.route("/contact", methods=["GET", "POST"])
@@ -88,11 +84,16 @@ def contact():
             name = form.name.data
             email = form.email.data
             content = form.content.data
-            webpageDB.insertto_contact_form(name,email,content)
-            sendFeedbackMail(data, name, email,content)             #flash message
-            flash("Mesajınız alındı","success")
+            webpageDB.insertto_contact_form(name, email, content)
+
+            threading.Thread(target=sendFeedbackMail, args=(data, name, email, content,)).start()
+
+
+            # sendFeedbackMail(data, name, email,content)             #flash message
+            flash("Mesajınız alındı", "success")
             return redirect(url_for("index"))
-        except:
+        except Exception as e:
+            print("Exception", e)
             flash("Hata daha sonra tekrar deneyin", "danger")
             return redirect(url_for("index"))
 
@@ -102,7 +103,8 @@ def contact():
 @app.errorhandler(404)
 def page_not_found(e):
     data = webpageDB.fetch_languages()
-    return render_template('404.html',navActive=None,data=data)
+    return render_template('404.html', navActive=None, data=data)
+
 
 if __name__ == '__main__':
     app.run()
