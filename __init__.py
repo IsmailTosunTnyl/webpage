@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, url_for, redirect, flash,current_app
-from flask_mysqldb import MySQL
+
 from dotenv import dotenv_values, set_key
 from dataBase import dataBase
 from forms import contactForm
@@ -21,7 +21,7 @@ app.config['MAIL_USE_SSL'] = True
 app.config['SECRET_KEY'] = 'any string works here'
 mail = Mail(app)
 
-mysql = MySQL(app)
+
 
 webpageDB = dataBase()
 
@@ -40,7 +40,6 @@ def index():
 
     navActive = navbarActive()
     navActive["home"] = "active"
-    print(data["index_header_list"])
 
     return render_template("index.html", data=data, navActive=navActive)
 
