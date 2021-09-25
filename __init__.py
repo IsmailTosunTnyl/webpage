@@ -1,8 +1,8 @@
-from flask import Flask, render_template, request, url_for, redirect, flash,current_app
-
+from flask import Flask, render_template, request, url_for, redirect, flash, current_app
+from wtforms import Form, BooleanField, StringField, PasswordField, validators, TextAreaField
 from dotenv import dotenv_values, set_key
 from dataBase import dataBase
-from forms import contactForm
+
 import threading
 
 from flask_mail import Mail, Message
@@ -21,9 +21,18 @@ app.config['MAIL_USE_SSL'] = True
 app.config['SECRET_KEY'] = 'any string works here'
 mail = Mail(app)
 
-
-
 webpageDB = dataBase()
+
+
+class contactForm(Form):
+    with app.test_request_context():
+        data = webpageDB.fetch_languages(request.accept_languages.best_match(["tr", "en"]))
+
+    name = StringField(data["contact_form_name"],
+                       [validators.Length(min=4, max=25, message=data["contact_form_name_error"])])
+    email = StringField(data["contact_form_email"], [validators.Email(message=data["contact_form_email_error"])])
+    content = TextAreaField(data["contact_form_content"],
+                            [validators.Length(min=2, message=data["contact_form_content_error"])])
 
 
 def navbarActive():
@@ -33,10 +42,7 @@ def navbarActive():
 
 @app.route('/')
 def index():
-
-    print(request.accept_languages.best_match(["de", "tr"]))
-
-    data = webpageDB.fetch_languages()
+    data = webpageDB.fetch_languages(request.accept_languages.best_match(["en", "tr"]))
 
     navActive = navbarActive()
     navActive["home"] = "active"
@@ -46,7 +52,7 @@ def index():
 
 @app.route("/about")
 def about():
-    data = webpageDB.fetch_languages()
+    data = webpageDB.fetch_languages(request.accept_languages.best_match(["en", "tr"]))
     navActive = navbarActive()
     navActive["about"] = "active"
 
@@ -54,8 +60,6 @@ def about():
 
 
 def sendFeedbackMail(data, name, email, content):
-
-
     msg = Message('Selamlar..', sender='ismailtosunnet@gmail.com',
                   recipients=[email, "itosun_99@hotmail.com"])  # feedback mail for user
     data["mail_subtitle"] = data["mail_appeal"] + " " + name + " " + data["mail_subtitle"]
@@ -64,7 +68,7 @@ def sendFeedbackMail(data, name, email, content):
         mail.send(msg)
 
         msgtome = Message(name, sender='ismailtosunnet@gmail.com',  # feedback mail for me
-                      recipients=["itosun_99@hotmail.com"])
+                          recipients=["itosun_99@hotmail.com"])
 
         msgtome.html = f"<h1>{name}</h1> <br> <h1>{email}</h1> <br> <p>{content}</p>"
         mail.send(msgtome)
@@ -72,7 +76,7 @@ def sendFeedbackMail(data, name, email, content):
 
 @app.route("/contact", methods=["GET", "POST"])
 def contact():
-    data = webpageDB.fetch_languages()
+    data = webpageDB.fetch_languages(request.accept_languages.best_match(["en", "tr"]))
 
     navActive = navbarActive()
     navActive["contact"] = "active"
@@ -88,7 +92,6 @@ def contact():
 
             threading.Thread(target=sendFeedbackMail, args=(data, name, email, content,)).start()
 
-
             # sendFeedbackMail(data, name, email,content)             #flash message
             flash("Mesajınız alındı", "success")
             return redirect(url_for("index"))
@@ -102,7 +105,7 @@ def contact():
 
 @app.errorhandler(404)
 def page_not_found(e):
-    data = webpageDB.fetch_languages()
+    data = webpageDB.fetch_languages(request.accept_languages.best_match(["en", "tr"]))
     return render_template('404.html', navActive=None, data=data)
 
 

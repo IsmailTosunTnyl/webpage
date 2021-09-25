@@ -16,7 +16,7 @@ class dataBase():
                                      aws_secret_access_key=env["aws_secret_access_key"],
                                      region_name=env["region_name"])
 
-    def fetch_languages(self):
+    def fetch_languages(self,language):
         table = self.client.Table("DynoDb1")
         response = table.get_item(
             Key={
@@ -25,7 +25,10 @@ class dataBase():
             }
         )
         item = response['Item']
-        return item["en"]
+        print("database",language)
+        if language == None:
+            return item["en"]
+        return item[language]
 
     def insertto_contact_form(self, name, email, content):
         table = self.client.Table("DynoDb1")
