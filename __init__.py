@@ -40,6 +40,7 @@ def index():
 
     navActive = navbarActive()
     navActive["home"] = "active"
+    print(data["index_header_list"])
 
     return render_template("index.html", data=data, navActive=navActive)
 

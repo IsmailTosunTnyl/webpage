@@ -20,12 +20,12 @@ class dataBase():
         table = self.client.Table("DynoDb1")
         response = table.get_item(
             Key={
-                'tablename': 'WebpageDb',
+                'tablename': 'Webpage_Db_Languages',
 
             }
         )
         item = response['Item']
-        return item["languages"]
+        return item["en"]
 
     def insertto_contact_form(self, name, email, content):
         table = self.client.Table("DynoDb1")
