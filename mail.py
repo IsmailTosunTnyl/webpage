@@ -8,7 +8,7 @@ import smtplib
 
 
 gmail_user = 'ismailtosunnet@gmail.com'
-gmail_password = 'liamsi1999'
+gmail_password = ' '
 
 msg = MIMEMultipart('alternative')
 #html =open("mailtemplata/mail.html",encoding="UTF-8")
