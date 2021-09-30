@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, url_for, redirect, flash, current_app
 from wtforms import Form, BooleanField, StringField, PasswordField, validators, TextAreaField
 from dotenv import dotenv_values, set_key
-from dataBase import dataBase
+from .dataBase import dataBase
 
 import threading
 
@@ -60,7 +60,7 @@ def about():
 
 
 def sendFeedbackMail(data, name, email, content):
-    msg = Message('Selamlar..', sender='ismailtosunnet@gmail.com',
+    msg = Message(data["mail_subject"], sender='ismailtosunnet@gmail.com',
                   recipients=[email, "itosun_99@hotmail.com"])  # feedback mail for user
     data["mail_subtitle"] = data["mail_appeal"] + " " + name + " " + data["mail_subtitle"]
     with app.app_context():

@@ -2,13 +2,14 @@ import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from flask import Flask, render_template
+from dotenv import dotenv_values
 
 import smtplib
-
+env = dotenv_values(".env")
 
 
 gmail_user = 'ismailtosunnet@gmail.com'
-gmail_password = 'liamsi1999'
+gmail_password = env["MAIL_PASSWORD"]
 
 msg = MIMEMultipart('alternative')
 #html =open("mailtemplata/mail.html",encoding="UTF-8")
