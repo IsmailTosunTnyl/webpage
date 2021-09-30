@@ -24,17 +24,6 @@ mail = Mail(app)
 webpageDB = dataBase()
 
 
-class contactForm(Form):
-    with app.test_request_context():
-        data = webpageDB.fetch_languages(request.accept_languages.best_match(["tr", "en"]))
-
-    name = StringField(data["contact_form_name"],
-                       [validators.Length(min=4, max=25, message=data["contact_form_name_error"])])
-    email = StringField(data["contact_form_email"], [validators.Email(message=data["contact_form_email_error"])])
-    content = TextAreaField(data["contact_form_content"],
-                            [validators.Length(min=2, message=data["contact_form_content_error"])])
-
-
 def navbarActive():
     navActive = {"home": "", "about": "", "contact": ""}
     return navActive
@@ -77,6 +66,14 @@ def sendFeedbackMail(data, name, email, content):
 @app.route("/contact", methods=["GET", "POST"])
 def contact():
     data = webpageDB.fetch_languages(request.accept_languages.best_match(["en", "tr"]))
+
+    class contactForm(Form):
+
+        name = StringField(data["contact_form_name"],
+                           [validators.Length(min=4, max=25, message=data["contact_form_name_error"])])
+        email = StringField(data["contact_form_email"], [validators.Email(message=data["contact_form_email_error"])])
+        content = TextAreaField(data["contact_form_content"],
+                                [validators.Length(min=2, message=data["contact_form_content_error"])])
 
     navActive = navbarActive()
     navActive["contact"] = "active"
