@@ -118,6 +118,12 @@
 
 
 	var contentWayPoint = function() {
+		0% {
+			opacity: 0
+		}
+		100% {
+			opacity: 1
+		}
 		var i = 0;
 		$('.animate-box').waypoint( function( direction ) {
 

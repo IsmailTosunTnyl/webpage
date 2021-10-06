@@ -24,11 +24,28 @@ class dataBase():
 
             }
         )
+
         item = response['Item']
         print("database",language)
         if language == None:
             return item["en"]
         return item[language]
+
+    def fetch_apps(self,language):
+        table = self.client.Table("DynoDb1")
+        response = table.get_item(
+            Key={
+                'tablename': 'WebPage_Apps',
+
+            }
+        )
+
+        item = response['Item']
+
+
+        if language == None:
+            return item["en"]
+        return item[language]["apps"]
 
     def insertto_contact_form(self, name, email, content):
         table = self.client.Table("DynoDb1")

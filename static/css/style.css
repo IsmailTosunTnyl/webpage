@@ -520,6 +520,7 @@ h1, h2, h3, h4, h5, h6, figure {
   font-style: 22px;
 }
 
+
 #fh5co-hero {
   height: 500px !important;
   background: url(../images/loader.gif) no-repeat center center;
@@ -1481,6 +1482,9 @@ input[type="text"] {
 
 .js .animate-box {
   opacity: 0;
+}
+.js .animate-box-opak {
+  opacity: 1;
 }
 html, body {
   height:100%;

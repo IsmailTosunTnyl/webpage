@@ -25,7 +25,7 @@ webpageDB = dataBase()
 
 
 def navbarActive():
-    navActive = {"home": "", "about": "", "contact": ""}
+    navActive = {"home": "", "about": "", "contact": "", "apps": "has-dropdown"}
     return navActive
 
 
@@ -100,9 +100,23 @@ def contact():
     return render_template("contact.html", data=data, navActive=navActive, form=form)
 
 
+@app.route("/apps")
+def apps():
+    data = webpageDB.fetch_languages(request.accept_languages.best_match(["en", "tr"]))
+    appsData = webpageDB.fetch_apps(request.accept_languages.best_match(["de", "tr"]))
+    print(appsData)
+
+    navActive = navbarActive()
+    navActive["apps"] = "has-dropdown active"
+
+    return render_template("apps.html", data=data, navActive=navActive, appsData=appsData
+                           )
+
+
 @app.errorhandler(404)
 def page_not_found(e):
     data = webpageDB.fetch_languages(request.accept_languages.best_match(["en", "tr"]))
+
     return render_template('404.html', navActive=None, data=data)
 
 
