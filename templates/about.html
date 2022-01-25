@@ -1,0 +1,77 @@
+{% extends "layout.html" %}
+	{% block head %}
+	  
+	
+	<meta charset="utf-8">
+	<title>ismailtosun.net</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="web developer computer engineer backend developer software developer" />
+	<meta name="author" content="ismailtosun" />
+
+
+
+  	<!-- Facebook and Twitter integration -->
+	<meta property="og:title" content=""/>
+	<meta property="og:image" content=""/>
+	<meta property="og:url" content=""/>
+	<meta property="og:site_name" content=""/>
+	<meta property="og:description" content=""/>
+	<meta name="twitter:title" content="" />
+	<meta name="twitter:image" content="" />
+	<meta name="twitter:url" content="" />
+	<meta name="twitter:card" content="" />
+
+	
+	{% endblock head %}
+	
+	
+		{% block body %}
+		  
+		
+	<div class="fh5co-loader"></div>
+	
+	<div id="page">
+	
+
+	<div id="fh5co-about">
+		<div class="container">
+			<div class="row animate-box">
+				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
+					<h2>{{data.about_big_title}}</h2>
+					<p>{{data.about_big_content}}</p>
+				</div>
+			</div>
+			<div class="row animate-box">
+				<div class="col-md-6 col-md-offset-3 text-center heading-section">
+					<h3>{{data.about_small_title}}</h3>
+					<p>{{data.about_small_content}} <span><a href="https://www.youtube.com/watch?v=wzMBGc14FJk">{{data.about_small_content_link}}</a></span></p>
+				</div>
+			</div>
+
+			<div class="row row-bottom-padded-md">
+				<div class="col-md-12 text-center animate-box">
+					<p><img src="static/images/handsome.jpg" alt="some handome guy" class=" center" width=500" 
+						height="700"></p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	
+
+					
+
+				
+
+
+				
+			</div>
+		</div>
+	</div>
+
+	
+	
+	
+
+	{% endblock body %}
+

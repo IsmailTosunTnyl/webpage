@@ -1,0 +1,94 @@
+{% extends "layout.html" %}
+	{% block head %}
+	  
+	
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>ismailtosun.net</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="web developer computer engineer backend developer software developer" />
+	<meta name="author" content="ismailtosun" />
+
+	
+	<meta property="og:title" content=""/>
+	<meta property="og:image" content=""/>
+	<meta property="og:url" content=""/>
+	<meta property="og:site_name" content=""/>
+	<meta property="og:description" content=""/>
+	<meta name="twitter:title" content="" />
+	<meta name="twitter:image" content="" />
+	<meta name="twitter:url" content="" />
+	<meta name="twitter:card" content="" />
+
+
+
+	{% endblock head %}
+	
+
+	{% block body %}
+	  
+	
+	<div class="fh5co-loader"></div>
+	
+	<div id="page">
+
+
+	<div id="fh5co-contact">
+		<div class="container">
+			<div class="row animate-box">
+				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
+					<h2>{{data.contact_title}}</h2>
+					<p>{{data.contact_content}}</p>
+				</div>
+			</div>
+		</div>
+		<div class="container">
+				<div class="row">
+					<div class="col-md-3 col-md-push-1 animate-box">
+						<h3>{{data.contact_adresstitle}}</h3>
+						<ul class="contact-info">
+							<li><i class="icon-location"></i>Karşıyaka/İzmir</li>
+							<li><i class="icon-old-phone"></i><a href="tel://+905495786372">+90 549 578 6372</a></li>
+							<li><i class="icon-mail22"></i><a href="mailto:ismailtosuntnyl@gmail.com">ismailtosuntnyl@gmail.com</a></li>
+							<li><i class="icon-globe2"></i><a href="/">ismailtosun<span>.</span>net</a></li>
+						</ul>
+					</div>
+					<div class="col-md-7 col-md-push-1 animate-box">
+						<form method=post>
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+									
+									{{ render_field(form.name, class ="form-control" ,placeholder=form.name.label.text)}}
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									{{ render_field(form.email, class ="form-control" ,placeholder=form.email.label.text)}}
+								</div>
+							</div>
+							<div class="col-md-12">
+								<div class="form-group">
+									
+									{{ render_field(form.content, class ="form-control" ,placeholder=form.content.label.text, cols="30", rows="9")}}
+								</div>
+							</div>
+							<div class="col-md-12">
+								<div class="form-group">
+									<input type="submit" value={{data.contact_form_button}} class="btn btn-primary">
+								</div>
+							</div>
+						</div>
+					</form>
+					</div>
+				</div>
+			</div>
+	</div>
+	
+	
+
+
+	{% endblock body %}
+	<br><br><br><br>
+		
+

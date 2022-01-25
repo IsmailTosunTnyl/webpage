@@ -1,0 +1,72 @@
+
+	{% extends "layout.html" %}
+	{% block head %}
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>ismailtosun.net</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="web developer computer engineer backend developer software developer" />
+	<meta name="author" content="ismailtosun" />
+
+	
+
+  	<!-- Facebook and Twitter integration -->
+	<meta property="og:title" content=""/>
+	<meta property="og:image" content=""/>
+	<meta property="og:url" content=""/>
+	<meta property="og:site_name" content=""/>
+	<meta property="og:description" content=""/>
+	<meta name="twitter:title" content="" />
+	<meta name="twitter:image" content="" />
+	<meta name="twitter:url" content="" />
+	<meta name="twitter:card" content="" />
+    {% endblock head %}
+	
+
+	
+
+	
+	
+		
+        {% block body %}
+        <div class="fh5co-loader"></div>
+	
+        
+      
+    
+        <header id="fh5co-header" class="fh5co-cover js-fullheight" role="banner">
+            <div class="overlay"></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2 text-center">
+                        <div class="display-t js-fullheight">
+                            <div class="display-tc js-fullheight animate-box" data-animate-effect="fadeIn">
+                                <h1>  {{ data.index_header_list[0] }}<br>{{ data.index_header_list[1]}} <br> {{ data.index_header_list[2]}} </h1>
+                                <h2>{{  data.index_subheader[0:-10] }} <a href={{  data.index_subheader_link}} target="_blank">{{  data.index_subheader[-10:] }}</a></h2>
+                                <p><a class="btn btn-primary btn-lg btn-demo" href="/contact"></i> {{ data.navbar_contact }}</a> <a href="/about" class="btn btn-primary btn-lg btn-learn">{{ data.navbar_about }}</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+    
+        
+    
+        
+    
+       
+        
+       
+
+    
+    
+        
+    
+        {% endblock body %}
+
+
+	
+
+	
+
+

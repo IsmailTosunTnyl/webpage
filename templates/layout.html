@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+   
+
+
+{% block head %}
+<title>Layout</title>
+{% endblock head %}
+
+<!-- <link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,500,700,800" rel="stylesheet">	 -->
+<link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700" rel="stylesheet">
+<link rel="icon" href="static/images/icon.png">
+
+
+	
+<!-- Animate.css -->
+<link rel="stylesheet" href="static/css/animate.css">
+<!-- Icomoon Icon Fonts-->
+<link rel="stylesheet" href="static/css/icomoon.css">
+<!-- Bootstrap  -->
+<link rel="stylesheet" href="static/css/bootstrap.css">
+<!-- Flexslider  -->
+<link rel="stylesheet" href="static/css/flexslider.css">
+
+<!-- Theme style  -->
+<link rel="stylesheet" href="static/css/style.css">
+
+<!-- Modernizr JS -->
+<script src="static/js/modernizr-2.6.2.min.js"></script>
+<!-- FOR IE9 below -->
+<!--[if lt IE 9]>
+<script src="js/respond.min.js"></script>
+<![endif]-->
+
+
+</head>
+<body>
+	<div id="page">
+{% include "includes/navbar.html" %}
+<div id="hideMe">{% include "includes/flash.html" %} </div>
+
+{% from "includes/formhelpers.html" import render_field %}
+
+{% block body %}
+<p><h1>Layout </h1></p>
+{% endblock body %}
+
+<div id="fh5co-started">
+	<div class="overlay"></div>
+	<div class="container">
+		<div class="row animate-box-opak">
+			<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
+				<h2>{{data.index_hireus}}</h2>
+				<p>{{data.index_hireus_text}}</p>
+				<p><a href="/contact" class="btn btn-default btn-lg">{{data.navbar_contact}}</a></p>
+			</div>
+		</div>
+	</div>
+</div>
+
+<footer id="fh5co-footer" role="contentinfo">
+	<div class="container">
+		<div class="row row-pb-md">
+			<div class="col-md-4 fh5co-widget">
+				<h4>{{data.footer_title}}</h4>
+				<p>{{data.footer_text}}</p>
+			</div>
+			<div class="col-md-2 col-md-push-1 fh5co-widget">
+				<h4>{{data.footer_links}}</h4>
+				<ul class="fh5co-footer-links">
+					<li><a href="/">{{data.navbar_home}}</a></li>
+					
+					<li><a href="/apps">{{data.navbar_apps}}</a></li>
+					<li><a href="/about">{{data.navbar_about}}</a></li>
+				</ul>
+			</div>
+
+			<div class="col-md-2 col-md-push-1 fh5co-widget">
+				
+			</div>
+
+			<div class="col-md-4 col-md-push-1 fh5co-widget">
+				<h4>{{data.footer_contact}}</h4>
+				<ul class="fh5co-footer-links">
+					<li>Karşıyaka <br> İzmir</li>
+					<li><a href="tel://+905495786372">+90 549 578 6372</a></li>
+					<li><a href="mailto:ismailtosuntnyl@gmail.com">ismailtosuntnyl@gmail.com</a></li>
+				   
+				</ul>
+			</div>
+
+		</div>
+
+		<div class="row copyright">
+			<div class="col-md-12 text-center">
+				<p>
+					<small class="block">&copy; 2021 ismailtosun.net All Rights Reserved.</small>
+					<small class="block"> Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></small>
+					
+				</p>
+				<p>
+					<ul class="fh5co-social-icons">
+						<li><a href="https://twitter.com/IsmailTosuntnyl"><i class="icon-twitter"></i></a></li>
+						<li><a href="https://www.youtube.com/channel/UCecXfay7x3mk-HpRciTBn2g"><i class="icon-youtube"></i></a></li>
+						<li><a href="#"><i class="icon-linkedin"></i></a></li>
+						<li><a href="https://github.com/IsmailTosunTnyl"><i class="icon-github"></i></a></li>
+						<li><a href="https://www.instagram.com/ismailtosuntr/"><i class="icon-instagram"></i></a></li>
+						<li><a href="https://www.reddit.com/user/Tanyeli60"><i class="icon-reddit"></i></a></li>
+					</ul>
+				</p>
+			</div>
+		</div>
+
+	</div>
+</footer>
+</div>
+
+<div class="gototop js-top">
+	<a href="#" class="js-gotop"><i class="icon-arrow-up22"></i></a>
+</div>
+
+
+
+  
+
+
+
+
+
+	<!-- jQuery -->
+	<script src="static/js/jquery.min.js"></script>
+	<!-- jQuery Easing -->
+	<script src="static/js/jquery.easing.1.3.js"></script>
+	<!-- Bootstrap -->
+	<script src="static/js/bootstrap.min.js"></script>
+	<!-- Waypoints -->
+	<script src="static/js/jquery.waypoints.min.js"></script>
+	<!-- Flexslider -->
+	<script src="static/js/jquery.flexslider-min.js"></script>
+	<!-- Main -->
+	<script src="static/js/main.js"></script>
+</div>
+</body>
+</html>
