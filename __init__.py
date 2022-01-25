@@ -1,3 +1,5 @@
+import os
+
 from flask import Flask, render_template, request, url_for, redirect, flash
 from wtforms import Form, StringField, validators, TextAreaField
 from dotenv import dotenv_values
@@ -8,14 +10,15 @@ import threading
 from flask_mail import Mail, Message
 
 env = dotenv_values(".env")
-
+print("env", env)
+print(os.environ.get("MAIL_USERNAME"))
 app = Flask(__name__)
 app.debug = True
 
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 465
-app.config['MAIL_USERNAME'] = env["MAIL_USERNAME"]
-app.config['MAIL_PASSWORD'] = env["MAIL_PASSWORD"]
+app.config['MAIL_USERNAME'] = "ismailtosunnet@gmail.com" #os.environ.get("MAIL_USERNAME")
+app.config['MAIL_PASSWORD'] = "liamsi1999"  # env["MAIL_PASSWORD"]
 app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = True
 app.config['SECRET_KEY'] = 'any string works here'
@@ -50,14 +53,14 @@ def about():
 
 def sendFeedbackMail(data, name, email, content):
     msg = Message(data["mail_subject"], sender='ismailtosunnet@gmail.com',
-                  recipients=[email, "itosun_99@hotmail.com"])  # feedback mail for user
+                  recipients=[email, env["MAIL_SECOND"]])  # feedback mail for user
     data["mail_subtitle"] = data["mail_appeal"] + " " + name + " " + data["mail_subtitle"]
     with app.app_context():
         msg.html = render_template("mail.html", data=data)
         mail.send(msg)
 
         msgtome = Message(name, sender='ismailtosunnet@gmail.com',  # feedback mail for me
-                          recipients=["itosun_99@hotmail.com"])
+                          recipients=[env["MAIL_SECOND"]])
 
         msgtome.html = f"<h1>{name}</h1> <br> <h1>{email}</h1> <br> <p>{content}</p>"
         mail.send(msgtome)
@@ -121,4 +124,4 @@ def page_not_found(e):
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host="0.0.0.0", port=5000)
