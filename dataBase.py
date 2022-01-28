@@ -1,3 +1,4 @@
+import os
 
 from dotenv import dotenv_values
 import boto3
@@ -11,8 +12,8 @@ class dataBase():
 
     def __init__(self):
 
-        self.client = boto3.resource('dynamodb', aws_access_key_id="AKIARDV4GN53JZC7QAP2",
-                                     aws_secret_access_key="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",
+        self.client = boto3.resource('dynamodb', aws_access_key_id=os.environ.get("ACCES_KEY"),
+                                     aws_secret_access_key=os.environ.get("SECRET_KEY"),
                                      region_name="eu-west-3")
 
     def fetch_languages(self,language):
