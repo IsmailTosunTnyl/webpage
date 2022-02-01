@@ -4,6 +4,7 @@ from flask import Flask, render_template, request, url_for, redirect, flash
 from wtforms import Form, StringField, validators, TextAreaField
 from dotenv import dotenv_values
 from dataBase import dataBase
+from dataBaseSQL import DataBaseSQL
 
 import threading
 
@@ -24,6 +25,7 @@ app.config['SECRET_KEY'] = 'any string works here'
 mail = Mail(app)
 
 webpageDB = dataBase()
+webpageDBSQL = DataBaseSQL()
 
 
 def navbarActive():
@@ -33,12 +35,12 @@ def navbarActive():
 
 @app.route('/')
 def index():
-    data = webpageDB.fetch_languages(request.accept_languages.best_match(["en", "tr"]))
-
+    data = webpageDBSQL.get_index_values(request.accept_languages.best_match(["en", "tr"]))
+    print(data)
     navActive = navbarActive()
     navActive["home"] = "active"
 
-    return render_template("index.html", data=data, navActive=navActive)
+    return render_template("index.html", data=data[0], navActive=navActive,index_header_list=data[1])
 
 
 @app.route("/about")
@@ -47,7 +49,7 @@ def about():
     navActive = navbarActive()
     navActive["about"] = "active"
 
-    return render_template("about.html", data=data, navActive=navActive)
+    return render_template("about.html", data=data[0], navActive=navActive)
 
 
 def sendFeedbackMail(data, name, email, content):
