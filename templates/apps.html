@@ -43,15 +43,15 @@
 
 
 
-{% for app in appsData  %}
+{% for app in appsCommon  %}
 <div class="fh5co-loader"></div>
-<div id="fh5co-slider" style="background: {{app.app_common.app_color}};" >
+<div id="fh5co-slider" style="background: {{app.app_color}};" >
 	<div class="container">
 		<div class="row">
 			<div class="col-md-6 animate-box-opak">
 				<div class="heading">
-					<h2><a href="{{app.app_common.app_link}}" style="color:{{app.app_common.app_title_color}}">{{app.app_common.app_title}}</a></h2>
-					<p>{{app.app_common.app_content}}</p>
+					<h2><a href="{{app.app_link}}" style="color:{{app.app_title_color}}">{{app.app_title}}</a></h2>
+					<p>{{app.app_content}}</p>
 				</div>
 			</div>
 			<div class="col-md-6 col-md-push-1 animate-box-opak">
@@ -59,7 +59,7 @@
 				<div class="flexslider">
 					<ul class="slides">
 
-						{% for sub in app["app_sub"] %}
+						{% for sub in appsData %}
 						  
 						
 					   <li style="background-image: url(static/images/{{sub.app_image}});">
@@ -86,16 +86,7 @@
 		</div>
 	</div>
 </div>
-<div class="container">
-	<div class="row animate-box">
 
-		<div class="col-md-8 col-md-offset-2 text-center fh5co-heading" data-animate-effect="fadeIn">
-			<h2>Çalışmalarım</h2>
-			<p>Bu sayfada yaptığım, yapmaya devam ettiğim yada yapmaktan vazgeçtiğim projeler hakkında kısa bilgiler bulabilirsiniz.</p>
-					
-		</div>
-	</div>
-</div>
   
 {% endfor %}
 

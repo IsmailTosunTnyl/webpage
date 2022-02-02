@@ -3,7 +3,7 @@ import os
 from flask import Flask, render_template, request, url_for, redirect, flash
 from wtforms import Form, StringField, validators, TextAreaField
 from dotenv import dotenv_values
-from dataBase import dataBase
+
 from dataBaseSQL import DataBaseSQL
 
 import threading
@@ -17,14 +17,14 @@ app.debug = True
 
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 465
-app.config['MAIL_USERNAME'] =os.environ.get("MAIL_USERNAME")
+app.config['MAIL_USERNAME'] = os.environ.get("MAIL_USERNAME")
 app.config['MAIL_PASSWORD'] = os.environ.get("MAIL_PASSWORD")
 app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = True
 app.config['SECRET_KEY'] = 'any string works here'
 mail = Mail(app)
 
-webpageDB = dataBase()
+# webpageDB = dataBase() old dynamoDB instance
 webpageDBSQL = DataBaseSQL()
 
 
@@ -40,16 +40,16 @@ def index():
     navActive = navbarActive()
     navActive["home"] = "active"
 
-    return render_template("index.html", data=data[0], navActive=navActive,index_header_list=data[1])
+    return render_template("index.html", data=data[0], navActive=navActive, index_header_list=data[1])
 
 
 @app.route("/about")
 def about():
-    data = webpageDB.fetch_languages(request.accept_languages.best_match(["en", "tr"]))
+    data = webpageDBSQL.get_about_values(request.accept_languages.best_match(["en", "tr"]))
     navActive = navbarActive()
     navActive["about"] = "active"
 
-    return render_template("about.html", data=data[0], navActive=navActive)
+    return render_template("about.html", data=data, navActive=navActive)
 
 
 def sendFeedbackMail(data, name, email, content):
@@ -61,7 +61,7 @@ def sendFeedbackMail(data, name, email, content):
         mail.send(msg)
 
         msgtome = Message(name, sender='ismailtosunnet@gmail.com',  # feedback mail for me
-                          recipients=[ os.environ.get("MAIL_SECOND")])
+                          recipients=[os.environ.get("MAIL_SECOND")])
 
         msgtome.html = f"<h1>{name}</h1> <br> <h1>{email}</h1> <br> <p>{content}</p>"
         mail.send(msgtome)
@@ -69,7 +69,7 @@ def sendFeedbackMail(data, name, email, content):
 
 @app.route("/contact", methods=["GET", "POST"])
 def contact():
-    data = webpageDB.fetch_languages(request.accept_languages.best_match(["en", "tr"]))
+    data = webpageDBSQL.get_contact_values(request.accept_languages.best_match(["en", "tr"]))
 
     class contactForm(Form):
 
@@ -89,7 +89,7 @@ def contact():
             name = form.name.data
             email = form.email.data
             content = form.content.data
-            webpageDB.insertto_contact_form(name, email, content)
+            webpageDBSQL.insert_into_formtable(name, email, content)
 
             threading.Thread(target=sendFeedbackMail, args=(data, name, email, content,)).start()
 
@@ -106,23 +106,25 @@ def contact():
 
 @app.route("/apps")
 def apps():
-    data = webpageDB.fetch_languages(request.accept_languages.best_match(["en", "tr"]))
-    appsData = webpageDB.fetch_apps(request.accept_languages.best_match(["de", "tr"]))
+    data = webpageDBSQL.get_myapps_values(request.accept_languages.best_match(["tr"]))
+    appsData = data[1]
+    data = data[0]
+
     print(appsData)
 
     navActive = navbarActive()
     navActive["apps"] = "has-dropdown active"
 
-    return render_template("apps.html", data=data, navActive=navActive, appsData=appsData
+    return render_template("apps.html", data=data[0], navActive=navActive, appsData=appsData, appsCommon=data
                            )
 
 
 @app.errorhandler(404)
 def page_not_found(e):
-    data = webpageDB.fetch_languages(request.accept_languages.best_match(["en", "tr"]))
+    data = webpageDBSQL.get_404_values(request.accept_languages.best_match(["en", "tr"]))
 
     return render_template('404.html', navActive=None, data=data)
 
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0",port=5000)
+    app.run(host="0.0.0.0", port=5000)
