@@ -25,8 +25,6 @@
     <div class="fh5co-loader"></div>
 <div id="page">
 
-
-
 		
 		<div class="container">
 			<div class="row animate-box">
@@ -39,11 +37,7 @@
 			</div>
 		</div>
 	
-
-
-
-
-{% for app in appsCommon  %}
+{% for app in appsData  %}
 <div class="fh5co-loader"></div>
 <div id="fh5co-slider" style="background: {{app.app_color}};" >
 	<div class="container">
@@ -59,17 +53,17 @@
 				<div class="flexslider">
 					<ul class="slides">
 
-						{% for sub in appsData %}
+						{% for sub in app["app_sub"] %}
 						  
 						
-					   <li style="background-image: url(static/images/{{sub.app_image}});">
+					   <li style="background-image: url(static/images/{{sub.app_image}});  background-size:450px 550px;">
 						   <div class="overlay-gradient"></div>
 						   <div class="container-fluid">
 							   <div class="row">
 								   <div class="col-md-12 col-md-offset-0 col-md-pull-10 slider-text slider-text-bg">
 									   <div class="slider-text-inner">
 										   <div class="desc" style="background-color: {{sub.app_background_color}}; color: {{sub.app_color}}">
-												<h2>{{sub.app_title}}</h2>
+												<h2 style="color:{{sub.app_title_color}}">{{sub.app_title}}</h2>
 												<p>{{sub.app_content}} </p>
 										   </div>
 									   </div>

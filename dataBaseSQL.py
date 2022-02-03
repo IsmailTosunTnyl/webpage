@@ -23,12 +23,16 @@ class DataBaseSQL:
         return data, index_header_list
 
     def get_myapps_values(self, language):
-        self.cur_dict.execute(f"SELECT * FROM app_sub WHERE language = '{language}';")
-        app_sub = self.cur_dict.fetchall()
-        self.cur_dict.execute(f"SELECT * FROM myapps_common WHERE language = '{language}';")
-        data = self.cur_dict.fetchall()
+        self.cur_dict.execute(f"SELECT * FROM common WHERE language = '{language}';")
+        data = self.cur_dict.fetchall()[0]
+        self.cur_dict.execute(f"SELECT * FROM app_common WHERE language = '{language}';")
+        apps = self.cur_dict.fetchall()
+        for i in apps:
+            self.cur_dict.execute(f"SELECT * FROM app_sub WHERE language = '{i['language']}' and id = '{i['id']}'")
 
-        return data, app_sub
+            i["app_sub"] = self.cur_dict.fetchall()
+        self.mydb.commit()
+        return data,apps
 
     def get_about_values(self,language):
         self.cur_dict.execute(f"SELECT * FROM about_common WHERE language = '{language}';")

@@ -114,8 +114,9 @@ def apps():
 
     navActive = navbarActive()
     navActive["apps"] = "has-dropdown active"
-
-    return render_template("apps.html", data=data[0], navActive=navActive, appsData=appsData, appsCommon=data
+    for app in appsData:
+        print(app["app_sub"])
+    return render_template("apps.html", data=data, navActive=navActive, appsData=appsData
                            )
 
 
