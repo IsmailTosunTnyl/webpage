@@ -1,6 +1,22 @@
-version: "3"
+version: "3.9"
 
 services:
+  mysql:
+    image: ubuntu/mysql:8.0-20.04_beta
+    ports:
+      - "3306:3306"
+
+    volumes:
+
+      - ./WebPage.sql:/docker-entrypoint-initdb.d/schema.sql:ro
+
+    environment:
+      - MYSQL_ROOT_PASSWORD=1234
+    healthcheck:
+      test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost" ]
+      timeout: 10s
+      retries: 10
+
   app:
     build:
       context: .
@@ -8,8 +24,19 @@ services:
       - MAIL_USERNAME= ${MAIL_USERNAME}
       - MAIL_PASSWORD= ${MAIL_PASSWORD}
       - MAIL_SECOND= ${MAIL_SECOND}
+      - DATABASE_HOST=${DATABASE_HOST}
+      - DATABASE_USER= ${DATABASE_USER}
+      - DATABASE_PSW=${DATABASE_PSW}
+      - DATABASE_NAME=${DATABASE_NAME}
     ports:
       - "5000"
+    links:
+      - "db:mysql"
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+
   nginx:
     image: nginx:latest
     volumes:
@@ -19,3 +46,10 @@ services:
       - app
     ports:
       - "80:80"
+
+  pgmyadmin:
+    image: phpmyadmin
+    ports:
+      - "3000:80"
+    links:
+      - "mysql:db"

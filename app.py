@@ -29,14 +29,14 @@ webpageDBSQL = DataBaseSQL()
 
 
 def navbarActive():
-    navActive = {"home": "", "about": "", "contact": "", "apps": "has-dropdown"}
+    navActive = {"home": "", "about": "", "contact": "", "apps": ""}
     return navActive
 
 
 @app.route('/')
 def index():
     data = webpageDBSQL.get_index_values(request.accept_languages.best_match(["en", "tr"]))
-    print(data)
+
     navActive = navbarActive()
     navActive["home"] = "active"
 
@@ -110,12 +110,9 @@ def apps():
     appsData = data[1]
     data = data[0]
 
-    print(appsData)
-
     navActive = navbarActive()
-    navActive["apps"] = "has-dropdown active"
-    for app in appsData:
-        print(app["app_sub"])
+    navActive["apps"] = "active"
+
     return render_template("apps.html", data=data, navActive=navActive, appsData=appsData
                            )
 

@@ -5,7 +5,7 @@ COPY static /opt/source-code/static
 
 COPY app.py /opt/source-code/
 COPY forms.py /opt/source-code/
-COPY dataBase.py /opt/source-code/
+COPY dataBaseSQL.py /opt/source-code/
 COPY requirements.txt /opt/source-code/
 WORKDIR /opt/source-code/
 

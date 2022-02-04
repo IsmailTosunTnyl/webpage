@@ -1,3 +1,4 @@
+import os
 import mysql.connector
 import datetime
 import pytz
@@ -5,10 +6,10 @@ import pytz
 class DataBaseSQL:
     def __init__(self):
         self.mydb = mysql.connector.connect(
-            host="localhost",
-            user="root",
-            password="1234",
-            database="WebPage"
+            host=os.environ.get("DATABASE_HOST"),
+            user=os.environ.get("DATABASE_USER"),
+            password=os.environ.get("DATABASE_PSW"),
+            database=os.environ.get("DATABASE_NAME")
         )
         self.cur_dict = self.mydb.cursor(dictionary=True)
         self.cur = self.mydb.cursor()
