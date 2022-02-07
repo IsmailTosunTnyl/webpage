@@ -51,7 +51,11 @@ class DataBaseSQL:
         return data
 
     def insert_into_formtable(self, name, email, content):
-        date = datetime.datetime.now(pytz.timezone("Europe/Istanbul")).strftime("%Y-%m-%d %H:%M:%S.%f")
+
         self.cur.execute(f"INSERT INTO form (date,name,email,content) VALUES (%s,%s,%s,%s);",
                          (datetime.datetime.now(pytz.timezone("Europe/Istanbul")), name, email, content))
         self.mydb.commit()
+    def get_common_values(self,language):
+        self.cur_dict.execute(f"SELECT * FROM soon WHERE language = '{language}';")
+        data = self.cur_dict.fetchall()[0]
+        return data

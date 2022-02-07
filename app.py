@@ -94,11 +94,11 @@ def contact():
             threading.Thread(target=sendFeedbackMail, args=(data, name, email, content,)).start()
 
             # sendFeedbackMail(data, name, email,content)             #flash message
-            flash("Mesajınız alındı", "success")
+            flash(data["about_flash_success"], "success")
             return redirect(url_for("index"))
         except Exception as e:
             print("Exception", e)
-            flash("Hata daha sonra tekrar deneyin", "danger")
+            flash(data["about_flash_failure"], "danger")
             return redirect(url_for("index"))
 
     return render_template("contact.html", data=data, navActive=navActive, form=form)
@@ -106,7 +106,7 @@ def contact():
 
 @app.route("/apps")
 def apps():
-    data = webpageDBSQL.get_myapps_values(request.accept_languages.best_match(["tr"]))
+    data = webpageDBSQL.get_myapps_values(request.accept_languages.best_match(["en","tr"]))
     appsData = data[1]
     data = data[0]
 
@@ -122,6 +122,12 @@ def page_not_found(e):
     data = webpageDBSQL.get_404_values(request.accept_languages.best_match(["en", "tr"]))
 
     return render_template('404.html', navActive=None, data=data)
+
+@app.route("/soon")
+def comming_soon():
+    data = webpageDBSQL.get_common_values(request.accept_languages.best_match(["en", "tr"]))
+
+    return render_template("soon.html",navActive=None,data=data)
 
 
 if __name__ == '__main__':
