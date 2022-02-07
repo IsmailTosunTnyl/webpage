@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: db
--- Generation Time: Feb 07, 2022 at 11:01 PM
+-- Generation Time: Feb 07, 2022 at 11:30 PM
 -- Server version: 8.0.27-0ubuntu0.20.04.1
 -- PHP Version: 7.4.27
 
@@ -440,6 +440,53 @@ CREATE TABLE `myapps_common` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `my_projects`
+--
+-- Creation: Feb 07, 2022 at 11:24 PM
+-- Last update: Feb 07, 2022 at 11:26 PM
+--
+
+CREATE TABLE `my_projects` (
+  `language` char(100) COLLATE utf8_turkish_ci NOT NULL,
+  `title` char(255) COLLATE utf8_turkish_ci DEFAULT NULL,
+  `sub_title` longtext COLLATE utf8_turkish_ci
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8_turkish_ci;
+
+--
+-- Dumping data for table `my_projects`
+--
+
+INSERT INTO `my_projects` (`language`, `title`, `sub_title`) VALUES
+('en', 'My Works', 'On this page, you can find brief information about the projects I have done, continue to do or have given up.'),
+('tr', 'Çalışmalarım', 'Bu sayfada yaptığım, yapmaya devam ettiğim yada yapmaktan vazgeçtiğim projeler hakkında kısa bilgiler bulabilirsiniz.');
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `my_project_common`
+-- (See below for the actual view)
+--
+CREATE TABLE `my_project_common` (
+`footer_contact` char(255)
+,`footer_links` char(255)
+,`footer_text` char(255)
+,`footer_title` char(255)
+,`index_hireus` char(255)
+,`index_hireus_text` char(255)
+,`language` char(100)
+,`navbar_about` char(255)
+,`navbar_apps` char(255)
+,`navbar_contact` char(255)
+,`navbar_home` char(255)
+,`navbar_login` char(255)
+,`navbar_pageTitle` char(255)
+,`sub_title` longtext
+,`title` char(255)
+);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `soon`
 --
 -- Creation: Feb 07, 2022 at 10:03 PM
@@ -504,6 +551,17 @@ DROP TABLE IF EXISTS `myapps_common`;
 
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `myapps_common`  AS SELECT `app_common`.`language` AS `language`, `app_common`.`id` AS `id`, `app_common`.`app_link` AS `app_link`, `app_common`.`app_color` AS `app_color`, `app_common`.`app_title_color` AS `app_title_color`, `app_common`.`app_content` AS `app_content`, `app_common`.`app_title` AS `app_title`, `common`.`navbar_apps` AS `navbar_apps`, `common`.`navbar_contact` AS `navbar_contact`, `common`.`navbar_about` AS `navbar_about`, `common`.`navbar_login` AS `navbar_login`, `common`.`navbar_home` AS `navbar_home`, `common`.`footer_text` AS `footer_text`, `common`.`footer_title` AS `footer_title`, `common`.`navbar_pageTitle` AS `navbar_pageTitle`, `common`.`footer_contact` AS `footer_contact`, `common`.`footer_links` AS `footer_links`, `common`.`index_hireus` AS `index_hireus`, `common`.`index_hireus_text` AS `index_hireus_text` FROM (`app_common` join `common` on((`app_common`.`language` = `common`.`language`))) ;
 
+-- --------------------------------------------------------
+
+--
+-- Structure for view `my_project_common`
+--
+DROP TABLE IF EXISTS `my_project_common`;
+-- Creation: Feb 07, 2022 at 11:28 PM
+--
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `my_project_common`  AS SELECT `my_projects`.`language` AS `language`, `my_projects`.`title` AS `title`, `my_projects`.`sub_title` AS `sub_title`, `common`.`navbar_apps` AS `navbar_apps`, `common`.`navbar_contact` AS `navbar_contact`, `common`.`navbar_about` AS `navbar_about`, `common`.`navbar_login` AS `navbar_login`, `common`.`navbar_home` AS `navbar_home`, `common`.`footer_text` AS `footer_text`, `common`.`footer_title` AS `footer_title`, `common`.`navbar_pageTitle` AS `navbar_pageTitle`, `common`.`footer_contact` AS `footer_contact`, `common`.`footer_links` AS `footer_links`, `common`.`index_hireus` AS `index_hireus`, `common`.`index_hireus_text` AS `index_hireus_text` FROM (`my_projects` join `common` on((`my_projects`.`language` = `common`.`language`))) ;
+
 --
 -- Indexes for dumped tables
 --
@@ -562,6 +620,13 @@ ALTER TABLE `index`
 --
 ALTER TABLE `index_header_list`
   ADD PRIMARY KEY (`id`,`language`);
+
+--
+-- Indexes for table `my_projects`
+--
+ALTER TABLE `my_projects`
+  ADD PRIMARY KEY (`language`),
+  ADD UNIQUE KEY `my_project_language_uindex` (`language`);
 
 --
 -- Indexes for table `soon`

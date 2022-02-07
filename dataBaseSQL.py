@@ -24,7 +24,7 @@ class DataBaseSQL:
         return data, index_header_list
 
     def get_myapps_values(self, language):
-        self.cur_dict.execute(f"SELECT * FROM common WHERE language = '{language}';")
+        self.cur_dict.execute(f"SELECT * FROM my_project_common WHERE language = '{language}';")
         data = self.cur_dict.fetchall()[0]
         self.cur_dict.execute(f"SELECT * FROM app_common WHERE language = '{language}';")
         apps = self.cur_dict.fetchall()
