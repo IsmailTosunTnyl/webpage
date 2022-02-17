@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: db
--- Generation Time: Feb 07, 2022 at 11:30 PM
--- Server version: 8.0.27-0ubuntu0.20.04.1
+-- Generation Time: Feb 17, 2022 at 01:59 PM
+-- Server version: 8.0.28
 -- PHP Version: 7.4.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -27,8 +27,6 @@ USE `WebPage`;
 
 --
 -- Table structure for table `about`
---
--- Creation: Feb 07, 2022 at 09:56 PM
 --
 
 CREATE TABLE `about` (
@@ -80,9 +78,6 @@ CREATE TABLE `about_common` (
 --
 -- Table structure for table `app_common`
 --
--- Creation: Feb 06, 2022 at 11:12 PM
--- Last update: Feb 06, 2022 at 11:19 PM
---
 
 CREATE TABLE `app_common` (
   `language` char(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
@@ -120,9 +115,6 @@ INSERT INTO `app_common` (`language`, `id`, `app_link`, `app_color`, `app_title_
 
 --
 -- Table structure for table `app_sub`
---
--- Creation: Jan 31, 2022 at 11:45 PM
--- Last update: Feb 07, 2022 at 12:12 AM
 --
 
 CREATE TABLE `app_sub` (
@@ -179,8 +171,6 @@ INSERT INTO `app_sub` (`language`, `id`, `app_background_color`, `app_color`, `a
 --
 -- Table structure for table `common`
 --
--- Creation: Jan 31, 2022 at 11:45 PM
---
 
 CREATE TABLE `common` (
   `language` char(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
@@ -203,15 +193,13 @@ CREATE TABLE `common` (
 --
 
 INSERT INTO `common` (`language`, `navbar_apps`, `navbar_contact`, `navbar_about`, `navbar_login`, `navbar_home`, `footer_text`, `footer_title`, `navbar_pageTitle`, `footer_contact`, `footer_links`, `index_hireus`, `index_hireus_text`) VALUES
-('en', 'My project', 'Contact', 'About Me', 'Login', 'Home', 'It is the personal website of İsmail Tosun.', 'ismailtosun.net', 'ismailtosun.net', 'Contact information', 'Links', 'Hire Me', 'Work with people who are young, open to learning, self-improving. The button below will direct you to one like this.'),
+('en', 'My projects', 'Contact', 'About Me', 'Login', 'Home', 'It is the personal website of İsmail Tosun.', 'ismailtosun.net', 'ismailtosun.net', 'Contact information', 'Links', 'Hire Me', 'Work with people who are young, open to learning, self-improving. The button below will direct you to one like this.'),
 ('tr', 'Uygulamalarım', 'İletişim', 'Hakkımda', 'Giriş Yap', 'Ana Sayfa', 'İsmail Tosun adlı kişinin kişisel web sitesidir.', 'ismailtosun.net', 'ismailtosun.net', 'İletişim Bilgileri', 'Linkler', 'Benimle Çalış', 'Genç, öğrenmeye açık, çalışmak isteyen insanlarla çalışın. Aşağıdaki buton sizi böyle birine yönlendirecek');
 
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `contact`
---
--- Creation: Feb 07, 2022 at 09:55 PM
 --
 
 CREATE TABLE `contact` (
@@ -230,9 +218,9 @@ CREATE TABLE `contact` (
   `contact_title` char(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `contact_content` char(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `contact_form_button` char(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `contact_form_name_error` char(100) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `about_flash_success` char(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `about_flash_failure` char(255) COLLATE utf8_unicode_ci DEFAULT NULL
+  `contact_form_name_error` char(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `about_flash_success` char(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `about_flash_failure` char(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8_unicode_ci;
 
 --
@@ -287,8 +275,6 @@ CREATE TABLE `contact_common` (
 --
 -- Table structure for table `error`
 --
--- Creation: Jan 31, 2022 at 11:45 PM
---
 
 CREATE TABLE `error` (
   `language` char(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
@@ -309,15 +295,13 @@ INSERT INTO `error` (`language`, `404_linktohome`, `404_title`) VALUES
 --
 -- Table structure for table `form`
 --
--- Creation: Feb 01, 2022 at 09:09 PM
---
 
 CREATE TABLE `form` (
   `id` int NOT NULL,
   `date` datetime DEFAULT NULL,
-  `name` char(255) COLLATE utf8_turkish_ci DEFAULT NULL,
-  `email` char(100) COLLATE utf8_turkish_ci DEFAULT NULL,
-  `content` char(255) COLLATE utf8_turkish_ci DEFAULT NULL
+  `name` char(255) CHARACTER SET utf8 COLLATE utf8_turkish_ci DEFAULT NULL,
+  `email` char(100) CHARACTER SET utf8 COLLATE utf8_turkish_ci DEFAULT NULL,
+  `content` char(255) CHARACTER SET utf8 COLLATE utf8_turkish_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8_turkish_ci;
 
 --
@@ -341,8 +325,6 @@ INSERT INTO `form` (`id`, `date`, `name`, `email`, `content`) VALUES
 
 --
 -- Table structure for table `index`
---
--- Creation: Jan 31, 2022 at 11:45 PM
 --
 
 CREATE TABLE `index` (
@@ -387,8 +369,6 @@ CREATE TABLE `index_common` (
 
 --
 -- Table structure for table `index_header_list`
---
--- Creation: Jan 31, 2022 at 11:45 PM
 --
 
 CREATE TABLE `index_header_list` (
@@ -442,14 +422,11 @@ CREATE TABLE `myapps_common` (
 --
 -- Table structure for table `my_projects`
 --
--- Creation: Feb 07, 2022 at 11:24 PM
--- Last update: Feb 07, 2022 at 11:26 PM
---
 
 CREATE TABLE `my_projects` (
-  `language` char(100) COLLATE utf8_turkish_ci NOT NULL,
-  `title` char(255) COLLATE utf8_turkish_ci DEFAULT NULL,
-  `sub_title` longtext COLLATE utf8_turkish_ci
+  `language` char(100) CHARACTER SET utf8 COLLATE utf8_turkish_ci NOT NULL,
+  `title` char(255) CHARACTER SET utf8 COLLATE utf8_turkish_ci DEFAULT NULL,
+  `sub_title` longtext CHARACTER SET utf8 COLLATE utf8_turkish_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8_turkish_ci;
 
 --
@@ -489,14 +466,11 @@ CREATE TABLE `my_project_common` (
 --
 -- Table structure for table `soon`
 --
--- Creation: Feb 07, 2022 at 10:03 PM
--- Last update: Feb 07, 2022 at 10:25 PM
---
 
 CREATE TABLE `soon` (
-  `language` char(20) COLLATE utf8_turkish_ci NOT NULL,
-  `link_to_home` char(255) COLLATE utf8_turkish_ci DEFAULT NULL,
-  `title` char(255) COLLATE utf8_turkish_ci DEFAULT NULL
+  `language` char(20) CHARACTER SET utf8 COLLATE utf8_turkish_ci NOT NULL,
+  `link_to_home` char(255) CHARACTER SET utf8 COLLATE utf8_turkish_ci DEFAULT NULL,
+  `title` char(255) CHARACTER SET utf8 COLLATE utf8_turkish_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8_turkish_ci;
 
 --
@@ -513,8 +487,6 @@ INSERT INTO `soon` (`language`, `link_to_home`, `title`) VALUES
 -- Structure for view `about_common`
 --
 DROP TABLE IF EXISTS `about_common`;
--- Creation: Feb 07, 2022 at 09:56 PM
---
 
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `about_common`  AS SELECT `about`.`language` AS `language`, `about`.`about_small_content_link` AS `about_small_content_link`, `about`.`about_small_title` AS `about_small_title`, `about`.`about_big_title` AS `about_big_title`, `about`.`about_big_content` AS `about_big_content`, `about`.`about_small_content` AS `about_small_content`, `common`.`navbar_apps` AS `navbar_apps`, `common`.`navbar_contact` AS `navbar_contact`, `common`.`navbar_about` AS `navbar_about`, `common`.`navbar_login` AS `navbar_login`, `common`.`navbar_home` AS `navbar_home`, `common`.`footer_text` AS `footer_text`, `common`.`footer_title` AS `footer_title`, `common`.`navbar_pageTitle` AS `navbar_pageTitle`, `common`.`footer_contact` AS `footer_contact`, `common`.`footer_links` AS `footer_links`, `common`.`index_hireus` AS `index_hireus`, `common`.`index_hireus_text` AS `index_hireus_text` FROM (`about` join `common` on((`about`.`language` = `common`.`language`))) ;
 
@@ -524,8 +496,6 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `about_c
 -- Structure for view `contact_common`
 --
 DROP TABLE IF EXISTS `contact_common`;
--- Creation: Feb 07, 2022 at 09:56 PM
---
 
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `contact_common`  AS SELECT `contact`.`language` AS `language`, `contact`.`contact_form_name` AS `contact_form_name`, `contact`.`mail_appeal` AS `mail_appeal`, `contact`.`mail_subtitle` AS `mail_subtitle`, `contact`.`contact_form_content` AS `contact_form_content`, `contact`.`contact_adresstitle` AS `contact_adresstitle`, `contact`.`mail_subject` AS `mail_subject`, `contact`.`contact_form_email_error` AS `contact_form_email_error`, `contact`.`contact_form_content_error` AS `contact_form_content_error`, `contact`.`mail_title` AS `mail_title`, `contact`.`mail_footer` AS `mail_footer`, `contact`.`contact_form_email` AS `contact_form_email`, `contact`.`contact_title` AS `contact_title`, `contact`.`contact_content` AS `contact_content`, `contact`.`contact_form_button` AS `contact_form_button`, `contact`.`contact_form_name_error` AS `contact_form_name_error`, `contact`.`about_flash_success` AS `about_flash_success`, `contact`.`about_flash_failure` AS `about_flash_failure`, `common`.`navbar_apps` AS `navbar_apps`, `common`.`navbar_contact` AS `navbar_contact`, `common`.`navbar_about` AS `navbar_about`, `common`.`navbar_login` AS `navbar_login`, `common`.`navbar_home` AS `navbar_home`, `common`.`footer_text` AS `footer_text`, `common`.`footer_title` AS `footer_title`, `common`.`navbar_pageTitle` AS `navbar_pageTitle`, `common`.`footer_contact` AS `footer_contact`, `common`.`footer_links` AS `footer_links`, `common`.`index_hireus` AS `index_hireus`, `common`.`index_hireus_text` AS `index_hireus_text` FROM (`contact` join `common` on((`contact`.`language` = `common`.`language`))) ;
 
@@ -535,8 +505,6 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `contact
 -- Structure for view `index_common`
 --
 DROP TABLE IF EXISTS `index_common`;
--- Creation: Feb 01, 2022 at 04:14 PM
---
 
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `index_common`  AS SELECT `index`.`language` AS `language`, `index`.`index_subheader_link` AS `index_subheader_link`, `index`.`index_subheader` AS `index_subheader`, `common`.`navbar_apps` AS `navbar_apps`, `common`.`navbar_contact` AS `navbar_contact`, `common`.`navbar_about` AS `navbar_about`, `common`.`navbar_login` AS `navbar_login`, `common`.`navbar_home` AS `navbar_home`, `common`.`footer_text` AS `footer_text`, `common`.`footer_title` AS `footer_title`, `common`.`navbar_pageTitle` AS `navbar_pageTitle`, `common`.`footer_contact` AS `footer_contact`, `common`.`footer_links` AS `footer_links`, `common`.`index_hireus` AS `index_hireus`, `common`.`index_hireus_text` AS `index_hireus_text` FROM (`index` join `common` on((`index`.`language` = `common`.`language`))) ;
 
@@ -546,8 +514,6 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `index_c
 -- Structure for view `myapps_common`
 --
 DROP TABLE IF EXISTS `myapps_common`;
--- Creation: Feb 01, 2022 at 08:37 PM
---
 
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `myapps_common`  AS SELECT `app_common`.`language` AS `language`, `app_common`.`id` AS `id`, `app_common`.`app_link` AS `app_link`, `app_common`.`app_color` AS `app_color`, `app_common`.`app_title_color` AS `app_title_color`, `app_common`.`app_content` AS `app_content`, `app_common`.`app_title` AS `app_title`, `common`.`navbar_apps` AS `navbar_apps`, `common`.`navbar_contact` AS `navbar_contact`, `common`.`navbar_about` AS `navbar_about`, `common`.`navbar_login` AS `navbar_login`, `common`.`navbar_home` AS `navbar_home`, `common`.`footer_text` AS `footer_text`, `common`.`footer_title` AS `footer_title`, `common`.`navbar_pageTitle` AS `navbar_pageTitle`, `common`.`footer_contact` AS `footer_contact`, `common`.`footer_links` AS `footer_links`, `common`.`index_hireus` AS `index_hireus`, `common`.`index_hireus_text` AS `index_hireus_text` FROM (`app_common` join `common` on((`app_common`.`language` = `common`.`language`))) ;
 
@@ -557,8 +523,6 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `myapps_
 -- Structure for view `my_project_common`
 --
 DROP TABLE IF EXISTS `my_project_common`;
--- Creation: Feb 07, 2022 at 11:28 PM
---
 
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `my_project_common`  AS SELECT `my_projects`.`language` AS `language`, `my_projects`.`title` AS `title`, `my_projects`.`sub_title` AS `sub_title`, `common`.`navbar_apps` AS `navbar_apps`, `common`.`navbar_contact` AS `navbar_contact`, `common`.`navbar_about` AS `navbar_about`, `common`.`navbar_login` AS `navbar_login`, `common`.`navbar_home` AS `navbar_home`, `common`.`footer_text` AS `footer_text`, `common`.`footer_title` AS `footer_title`, `common`.`navbar_pageTitle` AS `navbar_pageTitle`, `common`.`footer_contact` AS `footer_contact`, `common`.`footer_links` AS `footer_links`, `common`.`index_hireus` AS `index_hireus`, `common`.`index_hireus_text` AS `index_hireus_text` FROM (`my_projects` join `common` on((`my_projects`.`language` = `common`.`language`))) ;
 
