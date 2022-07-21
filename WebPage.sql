@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: db
--- Generation Time: Feb 17, 2022 at 01:59 PM
+-- Generation Time: Jul 13, 2022 at 05:08 PM
 -- Server version: 8.0.28
 -- PHP Version: 7.4.27
 
@@ -28,6 +28,8 @@ USE `WebPage`;
 --
 -- Table structure for table `about`
 --
+-- Creation: Feb 08, 2022 at 11:42 PM
+--
 
 CREATE TABLE `about` (
   `language` char(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
@@ -43,7 +45,7 @@ CREATE TABLE `about` (
 --
 
 INSERT INTO `about` (`language`, `about_small_content_link`, `about_small_title`, `about_big_title`, `about_big_content`, `about_small_content`) VALUES
-('en', 'Click Here', 'Education', 'About Me', 'I am an avid software developer trying to improve myself in hardware and software.', 'I studied Computer Engineering, besides, I continue to improve myself by taking courses and doing personal projects.For more detailed career information'),
+('en', 'Click Here', 'Education', 'About Me', 'I am an avid software developer trying to improve myself in hardware and software.', 'I studied Computer Engineering, besides I continue to improve myself by taking courses and doing personal projects.For more detailed career information'),
 ('tr', 'buraya tıklayın', 'Eğitimim', 'Benim Hakkımda', 'Donanım ve yazılım alanında kendini geliştirmeye çalışan hevesli bir yazılım geliştiricisiyim', 'Bilgisayar Mühendisliği eğitimi aldım, bunun yanı sıra kurslar alarak ve kişisel (nispeten küçük ve deneysel) projelerle kendimi geliştirmeye çalışıyorum. Daha detaylı kariyer bilgisi için                   tıklayın');
 
 -- --------------------------------------------------------
@@ -77,6 +79,8 @@ CREATE TABLE `about_common` (
 
 --
 -- Table structure for table `app_common`
+--
+-- Creation: Feb 08, 2022 at 11:42 PM
 --
 
 CREATE TABLE `app_common` (
@@ -115,6 +119,8 @@ INSERT INTO `app_common` (`language`, `id`, `app_link`, `app_color`, `app_title_
 
 --
 -- Table structure for table `app_sub`
+--
+-- Creation: Feb 08, 2022 at 11:42 PM
 --
 
 CREATE TABLE `app_sub` (
@@ -156,7 +162,7 @@ INSERT INTO `app_sub` (`language`, `id`, `app_background_color`, `app_color`, `a
 ('en', 3, '#339E66FF', '#FFFFFF', 'Design', 'webpage1.png', 'In general, I used a plain-simple design, most of the site content consists of free templates, the biggest reason for this is that I am not good at design :(', '#000000'),
 ('en', 3, '#9CC3D5F', '#FFFFFF', 'Backend', 'webpage2.png', 'It was written in  Python using  Flask framework, I started writing with dynamoDB as a database, then I switched to Mysql, the biggest reason for this is that I tried to host the site in different ways.', '#000000'),
 ('en', 3, '#339E66FF', '#FFFFFF', 'Hosting', 'webpage3.png', 'First I tried to host it myself on Raspberry Pi 4, but the 1st attempt failed when I learned that I was behind CGNAT, then I managed to host it for a while using EC2 Ubuntu server and Apache on AWS.', '#000000'),
-('en', 3, '#9CC3D5F', '#FFFFFF', 'Hosting-2', 'webpage3.png', 'Güncelleme yapmak zor olduğu için (daha da önemlisi Docker kullanmayı öğrenmek istediğim için) web sitesini ve Veritabanını kapsayıcılara dönüştürdüm. Docker-compose dosyasını Github sayfasında bulabilirsiniz.', '#000000'),
+('en', 3, '#9CC3D5F', '#FFFFFF', 'Hosting-2', 'webpage3.png', 'Since it is difficult to update (more importantly because I want to learn to use Docker) I converted the website and Database into containers. You can find the docker-compose file on the Github page.', '#000000'),
 ('en', 4, '#101820FF', '#FFFFFF', 'Unfinished', 'jda1.png', 'Written in java using the Discord API, I left it without further development due to my busy schedule at that time even this version is still working but I couldn\'t did what I a want .', '#FFFFFF'),
 ('en', 4, '#990011FF', '#FFFFFF', 'Hosting', 'heroku.png', 'I used Heroku as hosting provider  during short working time', '#FFFFFF'),
 ('en', 5, '#101820FF', '#FFFFFF', 'In Operation', 'discordpy.png', 'Completed version of the previous project which written with java, a discord bot that can play the audio files thats added to the database and track scores', '#FFFFFF'),
@@ -170,6 +176,8 @@ INSERT INTO `app_sub` (`language`, `id`, `app_background_color`, `app_color`, `a
 
 --
 -- Table structure for table `common`
+--
+-- Creation: Feb 08, 2022 at 11:42 PM
 --
 
 CREATE TABLE `common` (
@@ -200,6 +208,8 @@ INSERT INTO `common` (`language`, `navbar_apps`, `navbar_contact`, `navbar_about
 
 --
 -- Table structure for table `contact`
+--
+-- Creation: Feb 08, 2022 at 11:42 PM
 --
 
 CREATE TABLE `contact` (
@@ -275,6 +285,8 @@ CREATE TABLE `contact_common` (
 --
 -- Table structure for table `error`
 --
+-- Creation: Feb 08, 2022 at 11:42 PM
+--
 
 CREATE TABLE `error` (
   `language` char(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
@@ -295,6 +307,9 @@ INSERT INTO `error` (`language`, `404_linktohome`, `404_title`) VALUES
 --
 -- Table structure for table `form`
 --
+-- Creation: Feb 08, 2022 at 11:42 PM
+-- Last update: Jul 05, 2022 at 02:53 PM
+--
 
 CREATE TABLE `form` (
   `id` int NOT NULL,
@@ -310,21 +325,26 @@ CREATE TABLE `form` (
 
 INSERT INTO `form` (`id`, `date`, `name`, `email`, `content`) VALUES
 (1, NULL, '1', '1', '1'),
-(2, NULL, 'ALİ', 'ALİ@', 'ASFASASBJKASDBJKSDJK'),
-(4, '2022-02-02 00:28:20', 'veli', 'aasdasd', 'conansd'),
-(5, '2022-02-02 00:29:56', 'İsmail', 'ismail19991999@gmail.com', 'jkasdhjkasdbjkasdjk'),
-(6, '2022-02-02 02:10:38', 'İsmail', 'ismail19991999@gmail.com', 'dasdasdasdas'),
-(7, '2022-02-08 00:46:41', 'İsmail', 'ismail19991999@gmail.com', 'edddd'),
-(8, '2022-02-08 00:52:59', 'İsmail', 'ismail19991999@gmail.com', 'ffffff'),
-(9, '2022-02-08 00:56:53', 'İsmail', 'ismail19991999@gmail.com', 'ffffff'),
-(10, '2022-02-08 00:57:01', 'İsmail', 'ismail19991999@gmail.com', 'fghdfhdfhdfh'),
-(11, '2022-02-08 00:57:54', 'textbox_sample0', 'john@example.com', 'ddddddd'),
-(12, '2022-02-08 00:58:26', 'İsmail', 'ismail19991999@gmail.com', 'dasdasdasd');
+(18, '2022-03-09 16:37:50', 'İsmail', 'ismail19991999@gmail.com', 'ssssss'),
+(19, '2022-03-15 07:47:32', 'Lavina Naumann', 'lavina@datalist.biz', 'Hello,\n\nIt is with sad regret to inform you that DataList.biz is shutting down. We have made all our databases available for you at a one-time fee.\n\nYou can visit us on DataList.biz\n\nRegards.\nLavina'),
+(20, '2022-03-22 03:58:13', 'Ines', 'ines.palmore@gmail.com', 'Good day \r\n \r\nPawSafer™ Can Safely Trim Your Dog\'S Nails In No Time From Home.\r\n\r\nGet it while it\'s still 50% OFF + FREE Shipping\r\n\r\nBuy here: https://pawsafer.shop\r\n \r\nBest Wishes, \r\n \r\nInes'),
+(21, '2022-03-23 22:07:50', 'Roland', 'roland.blackston@googlemail.com', 'The ultimate smashing machine! Grinding Coffee Beans, Nuts & Spices in seconds.\r\n\r\n50% OFF for the next 24 Hours ONLY + FREE Worldwide Shipping for a LIMITED time\r\n\r\nOrder here: https://aromaonline.store\r\n\r\nRegards,\r\n\r\nRoland\r\nismailtosun.net'),
+(22, '2022-03-24 23:43:08', 'Ulrich', 'info@ismailtosun.net', 'Hi \r\n \r\nCAREDOGBEST™ - Personalized Dog Harness. All sizes from XS to XXL.  Easy ON/OFF in just 2 seconds.  LIFETIME WARRANTY.\r\n\r\nClick here: https://caredogbest.com\r\n \r\nTo your success, \r\n \r\nUlrich\r\nismailtosun.net'),
+(23, '2022-04-14 17:59:43', 'Christina Genders', 'christina@zippyleads.org', 'ZippyLeads.org is running an easter special till the 18th of April.\n\nGet all the leads you need for your company with our easter special.'),
+(24, '2022-04-19 21:52:53', 'Ramon Meredith', 'ramon@topdatalist.com', 'Hello.\r\n\r\nIt is with sad regret to inform you TopDataList.com is shutting down.\r\n\r\nWe have made all our databases available for you for a once off fee.\r\n\r\nVisit us on TopDataList.com'),
+(25, '2022-05-04 22:46:55', 'Jesse Schell', 'jesse@customdata.info', 'Hello, from CustomData.info we are a provider of unique databases that could help your business.\r\n\r\nPlease visit us at CustomData.info to see if we can help you.\r\n\r\nRegards,\r\nJesse\r\n'),
+(26, '2022-05-05 19:44:34', 'Irish', 'heather@groundedseries.com', 'Hello \r\n \r\nDefrost frozen foods in minutes safely and naturally with our THAW KING™. \r\n\r\n50% OFF for the next 24 Hours ONLY + FREE Worldwide Shipping for a LIMITED \r\n\r\nBuy now: https://thawking.store\r\n \r\nBest Wishes, \r\n \r\nIrish'),
+(27, '2022-05-19 16:23:05', 'Vance Kreitmayer', 'vance@topdatalist.com', 'Hi, It is with sad regret to inform you TopDataList.com is shutting down.\r\n\r\nWe are ceasing operations on TopDataList.com and have made our leads available at a $149 once off fee.\r\n\r\nVisit us on TopDataList.com\r\nRegards,\r\nVance'),
+(28, '2022-05-19 18:13:45', 'Mohammad Stern', 'mohammad@customdatabases.org', 'Your go-to source for leads. We can provide business to business and business to consumer leads, custom-tailored to your needs.\r\n\r\nCustomDatabases.org'),
+(29, '2022-06-02 15:31:17', 'Marcel', 'anamaria.canale@hansaperu.com', 'EASE YOUR PAIN IN 10 MINUTES EFFORTLESSLY\r\n\r\nBe Free from Neck Pain\r\nTry NeckFlexer & Relieve Neck Pain Effortlessly In 10 Min!\r\nSave 50% OFF + FREE Worldwide Shipping\r\n\r\nShop Now: neckflexer.online\r\n\r\nMarcel \r\nismailtosun.net'),
+(30, '2022-07-05 17:53:27', 'Nickolas Lennox', 'nickolas@makemysitemobile.com', 'Convert ismailtosun.net to an app with one click!\r\n\r\n80% of users browse websites from their phones. \r\n\r\nHave the App send out push notifications without any extra marketing costs!\r\n\r\nMakeMySiteMobile.com\r\n');
 
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `index`
+--
+-- Creation: Feb 08, 2022 at 11:42 PM
 --
 
 CREATE TABLE `index` (
@@ -338,8 +358,8 @@ CREATE TABLE `index` (
 --
 
 INSERT INTO `index` (`language`, `index_subheader_link`, `index_subheader`) VALUES
-('en', 'https://www.youtube.com/watch?v=Ef7nUOJQA3k', '\"I\'m still learning, don\'t be fooled by the big title'),
-('tr', 'https://www.youtube.com/watch?v=Ef7nUOJQA3k', 'Öğrenmeye devam ediyorum büyük başlığa aldanmayın');
+('en', 'https://www.youtube.com/watch?v=dQw4w9WgXcQ', '\"I\'m still learning, don\'t be fooled by the big title'),
+('tr', 'https://www.youtube.com/watch?v=dQw4w9WgXcQ', 'Öğrenmeye devam ediyorum büyük başlığa aldanmayın');
 
 -- --------------------------------------------------------
 
@@ -370,6 +390,8 @@ CREATE TABLE `index_common` (
 --
 -- Table structure for table `index_header_list`
 --
+-- Creation: Feb 08, 2022 at 11:42 PM
+--
 
 CREATE TABLE `index_header_list` (
   `id` int NOT NULL,
@@ -382,10 +404,10 @@ CREATE TABLE `index_header_list` (
 --
 
 INSERT INTO `index_header_list` (`id`, `language`, `sentences`) VALUES
-(1, 'en', 'Web application developer<br>'),
-(1, 'tr', '\\\"Web  uygulama  developer <br>\"'),
-(2, 'en', 'Backend developer \\\\n'),
-(2, 'tr', 'Backend developer \\\\n'),
+(1, 'en', 'Full Stack Developer<br>'),
+(1, 'tr', '\\\"Full Stack Developer <br>\"'),
+(2, 'en', 'Backend Developer \\\\n'),
+(2, 'tr', 'Backend Developer \\\\n'),
 (3, 'en', 'developer?'),
 (3, 'tr', 'developer?');
 
@@ -422,6 +444,8 @@ CREATE TABLE `myapps_common` (
 --
 -- Table structure for table `my_projects`
 --
+-- Creation: Feb 08, 2022 at 11:42 PM
+--
 
 CREATE TABLE `my_projects` (
   `language` char(100) CHARACTER SET utf8 COLLATE utf8_turkish_ci NOT NULL,
@@ -434,8 +458,8 @@ CREATE TABLE `my_projects` (
 --
 
 INSERT INTO `my_projects` (`language`, `title`, `sub_title`) VALUES
-('en', 'My Works', 'On this page, you can find brief information about the projects I have done, continue to do or have given up.'),
-('tr', 'Çalışmalarım', 'Bu sayfada yaptığım, yapmaya devam ettiğim yada yapmaktan vazgeçtiğim projeler hakkında kısa bilgiler bulabilirsiniz.');
+('en', 'My Works', 'On this page, you can find brief information about the projects I have done, continue to do or have given up. You can find the source code by clicking the title(mostly)'),
+('tr', 'Çalışmalarım', 'Bu sayfada yaptığım, yapmaya devam ettiğim yada yapmaktan vazgeçtiğim projeler hakkında kısa bilgiler bulabilirsiniz. Proje başlığına tıklayarak kaynak koduna erişebilirsiniz(çoğunlukla) ');
 
 -- --------------------------------------------------------
 
@@ -466,6 +490,8 @@ CREATE TABLE `my_project_common` (
 --
 -- Table structure for table `soon`
 --
+-- Creation: Feb 08, 2022 at 11:42 PM
+--
 
 CREATE TABLE `soon` (
   `language` char(20) CHARACTER SET utf8 COLLATE utf8_turkish_ci NOT NULL,
@@ -487,6 +513,8 @@ INSERT INTO `soon` (`language`, `link_to_home`, `title`) VALUES
 -- Structure for view `about_common`
 --
 DROP TABLE IF EXISTS `about_common`;
+-- Creation: Feb 08, 2022 at 11:42 PM
+--
 
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `about_common`  AS SELECT `about`.`language` AS `language`, `about`.`about_small_content_link` AS `about_small_content_link`, `about`.`about_small_title` AS `about_small_title`, `about`.`about_big_title` AS `about_big_title`, `about`.`about_big_content` AS `about_big_content`, `about`.`about_small_content` AS `about_small_content`, `common`.`navbar_apps` AS `navbar_apps`, `common`.`navbar_contact` AS `navbar_contact`, `common`.`navbar_about` AS `navbar_about`, `common`.`navbar_login` AS `navbar_login`, `common`.`navbar_home` AS `navbar_home`, `common`.`footer_text` AS `footer_text`, `common`.`footer_title` AS `footer_title`, `common`.`navbar_pageTitle` AS `navbar_pageTitle`, `common`.`footer_contact` AS `footer_contact`, `common`.`footer_links` AS `footer_links`, `common`.`index_hireus` AS `index_hireus`, `common`.`index_hireus_text` AS `index_hireus_text` FROM (`about` join `common` on((`about`.`language` = `common`.`language`))) ;
 
@@ -496,6 +524,8 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `about_c
 -- Structure for view `contact_common`
 --
 DROP TABLE IF EXISTS `contact_common`;
+-- Creation: Feb 08, 2022 at 11:42 PM
+--
 
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `contact_common`  AS SELECT `contact`.`language` AS `language`, `contact`.`contact_form_name` AS `contact_form_name`, `contact`.`mail_appeal` AS `mail_appeal`, `contact`.`mail_subtitle` AS `mail_subtitle`, `contact`.`contact_form_content` AS `contact_form_content`, `contact`.`contact_adresstitle` AS `contact_adresstitle`, `contact`.`mail_subject` AS `mail_subject`, `contact`.`contact_form_email_error` AS `contact_form_email_error`, `contact`.`contact_form_content_error` AS `contact_form_content_error`, `contact`.`mail_title` AS `mail_title`, `contact`.`mail_footer` AS `mail_footer`, `contact`.`contact_form_email` AS `contact_form_email`, `contact`.`contact_title` AS `contact_title`, `contact`.`contact_content` AS `contact_content`, `contact`.`contact_form_button` AS `contact_form_button`, `contact`.`contact_form_name_error` AS `contact_form_name_error`, `contact`.`about_flash_success` AS `about_flash_success`, `contact`.`about_flash_failure` AS `about_flash_failure`, `common`.`navbar_apps` AS `navbar_apps`, `common`.`navbar_contact` AS `navbar_contact`, `common`.`navbar_about` AS `navbar_about`, `common`.`navbar_login` AS `navbar_login`, `common`.`navbar_home` AS `navbar_home`, `common`.`footer_text` AS `footer_text`, `common`.`footer_title` AS `footer_title`, `common`.`navbar_pageTitle` AS `navbar_pageTitle`, `common`.`footer_contact` AS `footer_contact`, `common`.`footer_links` AS `footer_links`, `common`.`index_hireus` AS `index_hireus`, `common`.`index_hireus_text` AS `index_hireus_text` FROM (`contact` join `common` on((`contact`.`language` = `common`.`language`))) ;
 
@@ -505,6 +535,8 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `contact
 -- Structure for view `index_common`
 --
 DROP TABLE IF EXISTS `index_common`;
+-- Creation: Feb 08, 2022 at 11:42 PM
+--
 
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `index_common`  AS SELECT `index`.`language` AS `language`, `index`.`index_subheader_link` AS `index_subheader_link`, `index`.`index_subheader` AS `index_subheader`, `common`.`navbar_apps` AS `navbar_apps`, `common`.`navbar_contact` AS `navbar_contact`, `common`.`navbar_about` AS `navbar_about`, `common`.`navbar_login` AS `navbar_login`, `common`.`navbar_home` AS `navbar_home`, `common`.`footer_text` AS `footer_text`, `common`.`footer_title` AS `footer_title`, `common`.`navbar_pageTitle` AS `navbar_pageTitle`, `common`.`footer_contact` AS `footer_contact`, `common`.`footer_links` AS `footer_links`, `common`.`index_hireus` AS `index_hireus`, `common`.`index_hireus_text` AS `index_hireus_text` FROM (`index` join `common` on((`index`.`language` = `common`.`language`))) ;
 
@@ -514,6 +546,8 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `index_c
 -- Structure for view `myapps_common`
 --
 DROP TABLE IF EXISTS `myapps_common`;
+-- Creation: Feb 08, 2022 at 11:42 PM
+--
 
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `myapps_common`  AS SELECT `app_common`.`language` AS `language`, `app_common`.`id` AS `id`, `app_common`.`app_link` AS `app_link`, `app_common`.`app_color` AS `app_color`, `app_common`.`app_title_color` AS `app_title_color`, `app_common`.`app_content` AS `app_content`, `app_common`.`app_title` AS `app_title`, `common`.`navbar_apps` AS `navbar_apps`, `common`.`navbar_contact` AS `navbar_contact`, `common`.`navbar_about` AS `navbar_about`, `common`.`navbar_login` AS `navbar_login`, `common`.`navbar_home` AS `navbar_home`, `common`.`footer_text` AS `footer_text`, `common`.`footer_title` AS `footer_title`, `common`.`navbar_pageTitle` AS `navbar_pageTitle`, `common`.`footer_contact` AS `footer_contact`, `common`.`footer_links` AS `footer_links`, `common`.`index_hireus` AS `index_hireus`, `common`.`index_hireus_text` AS `index_hireus_text` FROM (`app_common` join `common` on((`app_common`.`language` = `common`.`language`))) ;
 
@@ -523,6 +557,8 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `myapps_
 -- Structure for view `my_project_common`
 --
 DROP TABLE IF EXISTS `my_project_common`;
+-- Creation: Feb 08, 2022 at 11:42 PM
+--
 
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `my_project_common`  AS SELECT `my_projects`.`language` AS `language`, `my_projects`.`title` AS `title`, `my_projects`.`sub_title` AS `sub_title`, `common`.`navbar_apps` AS `navbar_apps`, `common`.`navbar_contact` AS `navbar_contact`, `common`.`navbar_about` AS `navbar_about`, `common`.`navbar_login` AS `navbar_login`, `common`.`navbar_home` AS `navbar_home`, `common`.`footer_text` AS `footer_text`, `common`.`footer_title` AS `footer_title`, `common`.`navbar_pageTitle` AS `navbar_pageTitle`, `common`.`footer_contact` AS `footer_contact`, `common`.`footer_links` AS `footer_links`, `common`.`index_hireus` AS `index_hireus`, `common`.`index_hireus_text` AS `index_hireus_text` FROM (`my_projects` join `common` on((`my_projects`.`language` = `common`.`language`))) ;
 
@@ -607,7 +643,7 @@ ALTER TABLE `soon`
 -- AUTO_INCREMENT for table `form`
 --
 ALTER TABLE `form`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
