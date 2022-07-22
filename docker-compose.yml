@@ -18,7 +18,8 @@ services:
       retries: 10
 
   app:
-    image: ismailtosun/webpage:v3
+    build:
+      context: .
     environment:
       - MAIL_USERNAME= ${MAIL_USERNAME}
       - MAIL_PASSWORD= ${MAIL_PASSWORD}
